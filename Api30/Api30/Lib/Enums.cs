@@ -38,8 +38,8 @@
         BRA
     }
 
-    public enum CieloCardBrand
-    {
-        Visa, Master , Amex , Elo , Aura , JCB , Diners , Discover
-    }
+    //public enum CieloCardBrand
+    //{
+    //    Visa, Master , Amex , Elo , Aura , JCB , Diners , Discover
+    //}
 }

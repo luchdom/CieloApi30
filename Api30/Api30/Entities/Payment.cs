@@ -6,6 +6,16 @@ namespace Api30.Entities
 {
     public class Payment
     {
+        public Payment(decimal amount)
+        {
+            Amount = amount;
+        }
+
+        public Payment(decimal amount, int installments)
+        {
+            Amount = amount;
+            Installments = installments;
+        }
         [JsonProperty(PropertyName = "ServiceTaxAmount")]
         public decimal ServiceTaxAmount { get; set; }
 

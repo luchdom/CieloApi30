@@ -4,6 +4,10 @@ namespace Api30.Entities
 {
     public class Sale
     {
+        public Sale(string merchantOrderId)
+        {
+            MerchantOrderId = merchantOrderId;
+        }
         [JsonProperty(PropertyName = "MerchantOrderId")]
         public string MerchantOrderId { get; set; }
 

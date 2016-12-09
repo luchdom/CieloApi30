@@ -6,9 +6,14 @@ namespace Api30.Entities
 {
     public class CreditCard
     {
-        public CreditCard()
+        public CreditCard(string holder, string expirationDate, string cardNumber, string securityCode, string brand)
         {
             SaveCard = false;
+            Holder = holder;
+            ExpirationDate = expirationDate;
+            CardNumber = cardNumber;
+            SecurityCode = securityCode;
+            Brand = brand;
         }
 
         [JsonProperty(PropertyName = "CardNumber")]
@@ -27,8 +32,7 @@ namespace Api30.Entities
         public bool SaveCard { get; set; }
 
         [JsonProperty(PropertyName = "Brand")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public CieloCardBrand Brand { get; set; }
+        public string Brand { get; set; }
 
         [JsonProperty(PropertyName = "CardToken")]
         public string CardToken { get; set; }
