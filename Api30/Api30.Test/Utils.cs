@@ -15,6 +15,19 @@ namespace Api30.Test
             Email = "lucas.domingues@rasystem.com.br"
         };
 
+        public static Sale SaleSimple = new Sale()
+        {
+            MerchantOrderId = Guid.NewGuid().ToString(),
+            Customer = Utils.CustomerSimple,
+            Payment = new Payment()
+            {
+                Type = Lib.CieloPaymentType.CreditCard,
+                Amount = 1.00m,
+                Installments = 1,
+                CreditCard = CardValid_4
+            }
+        };
+
 
         public static CreditCard CardValid_4 = new CreditCard()
         {

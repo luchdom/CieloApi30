@@ -82,7 +82,7 @@ namespace Api30.Entities
         public string ReturnMessage { get; set; }
 
         [JsonProperty(PropertyName = "Status")]
-        public int Status { get; set; }
+        public CieloPaymentStatus Status { get; set; }
 
         [JsonProperty(PropertyName = "Links")]
         public object[] Links { get; set; }
@@ -107,5 +107,19 @@ namespace Api30.Entities
 
         [JsonProperty(PropertyName = "Address")]
         public string Address { get; set; }
+
+        [JsonProperty(PropertyName = "ReasonCode")]
+        public int ReasonCode { get; set; }
+
+        [JsonProperty(PropertyName = "ReasonMessage")]
+        public string ReasonMessage { get; set; }
+
+        [JsonProperty(PropertyName = "ProviderReturnCode")]
+        public string ProviderReturnCode { get; set; }
+
+        [JsonProperty(PropertyName = "ProviderReturnMessage")]
+        public string ProviderReturnMessage { get; set; }
+
+
     }
 }

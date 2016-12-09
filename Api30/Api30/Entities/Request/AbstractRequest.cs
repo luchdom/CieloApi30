@@ -22,6 +22,7 @@ namespace Api30.Entities.Request
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip");
+            // You get the following exception when trying to set the "Content-Type" header like this:
             //_httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
             _httpClient.DefaultRequestHeaders.Add("User-Agent", "CieloEcommerce/3.0 .NET SDK");
             _httpClient.DefaultRequestHeaders.Add("MerchantId", merchant.Id);
@@ -78,9 +79,20 @@ namespace Api30.Entities.Request
             switch (response.StatusCode)
             {
                 case HttpStatusCode.OK:
+                    var resultOK = await response.Content.ReadAsStringAsync();
+                    try
+                    {
+                        sale = JsonConvert.DeserializeObject<Sale>(resultOK);
+                    }
+                    catch(Exception ex)
+                    {
+                        sale = new Sale();
+                        sale.Payment = JsonConvert.DeserializeObject<Payment>(resultOK);
+                    }
+                    break;
                 case HttpStatusCode.Created:
-                    var resultSuccess = await response.Content.ReadAsStringAsync();
-                    sale = JsonConvert.DeserializeObject<Sale>(resultSuccess);
+                    var resultCreated = await response.Content.ReadAsStringAsync();
+                    sale = JsonConvert.DeserializeObject<Sale>(resultCreated);
                     break;
 
                 case HttpStatusCode.BadRequest:
@@ -96,7 +108,7 @@ namespace Api30.Entities.Request
                 case HttpStatusCode.NotFound:
                     throw new CieloRequestException("Not found", new CieloError((int)response.StatusCode, "Not found"));
                 default:
-                    Debug.WriteLine($"Cielo : Unknown status : {(int)response.StatusCode}");
+                    Debug.WriteLine($"Cielo - Unknown status [{(int)response.StatusCode}] : {response.Content.ReadAsStringAsync()}");
                     break;
             }
             //}
