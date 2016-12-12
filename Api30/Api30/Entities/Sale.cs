@@ -4,6 +4,10 @@ namespace Api30.Entities
 {
     public class Sale
     {
+        public Sale()
+        {
+
+        }
         public Sale(string merchantOrderId)
         {
             MerchantOrderId = merchantOrderId;

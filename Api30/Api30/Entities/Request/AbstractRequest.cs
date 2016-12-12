@@ -82,11 +82,12 @@ namespace Api30.Entities.Request
                     var resultOK = await response.Content.ReadAsStringAsync();
                     try
                     {
-                        sale = JsonConvert.DeserializeObject<Sale>(resultOK);
+                        sale = JsonConvert.DeserializeObject<Sale>(resultOK, new JsonSerializerSettings()
+                        {MissingMemberHandling= MissingMemberHandling.Error });
                     }
                     catch(Exception ex)
                     {
-                        sale = new Sale();
+                        sale = new Sale("");
                         sale.Payment = JsonConvert.DeserializeObject<Payment>(resultOK);
                     }
                     break;

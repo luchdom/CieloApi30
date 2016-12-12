@@ -9,42 +9,25 @@ namespace Api30.Test
 {
     public class Utils
     {
-        public static Customer CustomerSimple = new Customer()
+        public static Customer CustomerSimple = new Customer("Client Test")
         {
-            Name = "Client Test",
             Email = "lucas.domingues@rasystem.com.br"
         };
 
-        public static Sale SaleSimple = new Sale()
+        public static Sale SaleSimple = new Sale(Guid.NewGuid().ToString())
         {
-            MerchantOrderId = Guid.NewGuid().ToString(),
             Customer = Utils.CustomerSimple,
-            Payment = new Payment()
+            Payment = new Payment(Lib.CieloPaymentType.CreditCard, 1.00m)
             {
-                Type = Lib.CieloPaymentType.CreditCard,
-                Amount = 1.00m,
-                Installments = 1,
                 CreditCard = CardValid_4
             }
         };
 
 
-        public static CreditCard CardValid_4 = new CreditCard()
-        {
-            CardNumber = "0000000000000001",
-            Holder = "Teste Holder",
-            ExpirationDate = $"{DateTime.Today.Month}/{DateTime.Today.Year + 3}",
-            SecurityCode = "123",
-            Brand = Lib.CieloCardBrand.Visa
-        };
+        public static CreditCard CardValid_4 = new CreditCard("Teste Holder","0000000000000001", $"{DateTime.Today.Month}/{DateTime.Today.Year + 3}",
+            "123", "Visa");
 
-        public static CreditCard CardUnauthorized_2 = new CreditCard()
-        {
-            CardNumber = "0000000000000002",
-            Holder = "Teste Holder",
-            ExpirationDate = $"{DateTime.Today.Month}/{DateTime.Today.Year + 3}",
-            SecurityCode = "123",
-            Brand = Lib.CieloCardBrand.Visa
-        };
+        public static CreditCard CardUnauthorized_2 = new CreditCard("Teste Holder","0000000000000002", $"{DateTime.Today.Month}/{DateTime.Today.Year + 3}",
+            "123", "Visa");
     }
 }

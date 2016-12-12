@@ -6,7 +6,11 @@ namespace Api30.Entities
 {
     public class CreditCard
     {
-        public CreditCard(string holder, string expirationDate, string cardNumber, string securityCode, string brand)
+        public CreditCard()
+        {
+
+        }
+        public CreditCard(string holder, string cardNumber, string expirationDate, string securityCode, string brand)
         {
             SaveCard = false;
             Holder = holder;

@@ -4,6 +4,9 @@ namespace Api30.Entities
 {
     public class Customer
     {
+        public Customer()
+        {
+        }
         public Customer(string name)
         {
             Name = name;

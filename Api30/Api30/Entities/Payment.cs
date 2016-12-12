@@ -6,12 +6,17 @@ namespace Api30.Entities
 {
     public class Payment
     {
-        public Payment(decimal amount)
+        public Payment()
+        {
+
+        }
+        public Payment(CieloPaymentType type, decimal amount)
         {
             Amount = amount;
+            Installments = 1;
         }
 
-        public Payment(decimal amount, int installments)
+        public Payment(CieloPaymentType type, decimal amount, int installments)
         {
             Amount = amount;
             Installments = installments;
@@ -69,8 +74,8 @@ namespace Api30.Entities
         [JsonProperty(PropertyName = "Amount")]
         public decimal Amount { get; set; }
 
-        [JsonProperty(PropertyName = "ReceiveDate")]
-        public string ReceiveDate { get; set; }
+        [JsonProperty(PropertyName = "ReceivedDate")]
+        public string ReceivedDate { get; set; }
 
         [JsonProperty(PropertyName = "CapturedAmount")]
         public decimal CapturedAmount { get; set; }
